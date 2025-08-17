@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FrameUp — Clean Coverflow</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    :root{ --bg:#20003a; --card-bg:#120022; --radius:22px; }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 700px at 50% -10%, #5b1bb3 0%, var(--bg) 40%, #0b0015 100%) fixed;
+    }
+    .wrap{ max-width:1120px; margin:0 auto; padding:28px 14px 40px; }
+    .swiper{ width:100%; height:clamp(380px, 58vw, 560px); }
+    .swiper-slide{
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+      border-radius:var(--radius);
+      background:var(--card-bg);
+      box-shadow:0 12px 40px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.04) inset;
+    }
+    .swiper-slide img{
+      width:100%; height:100%; object-fit:cover;
+      transform:scale(1.02); transition:transform .6s ease;
+    }
+    .swiper-slide:hover img{ transform:scale(1.06) }
+    .swiper-button-prev,.swiper-button-next{ filter: drop-shadow(0 4px 12px rgba(0,0,0,.5)); color:#fff; }
+    .swiper-button-prev:after,.swiper-button-next:after{ font-size:22px }
+    .swiper-pagination-bullet{ width:9px; height:9px; opacity:.5; background:#fff; }
+    .swiper-pagination-bullet-active{ opacity:1 }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="swiper" aria-label="FrameUp gallery">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img loading="lazy" src="01.jpg" alt=""></div>
+        <div class="swiper-slide"><img loading="lazy" src="02.jpg" alt=""></div>
+        <div class="swiper-slide"><img loading="lazy" src="03.jpg" alt=""></div>
+        <div class="swiper-slide"><img loading="lazy" src="04.jpg" alt=""></div>
+        <div class="swiper-slide"><img loading="lazy" src="05.jpg" alt=""></div>
+      </div>
+      <div class="swiper-pagination" aria-hidden="true"></div>
+      <div class="swiper-button-prev" aria-label="السابق"></div>
+      <div class="swiper-button-next" aria-label="التالي"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      speed: 650,
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 1,
+      spaceBetween: 18,
+      autoplay: { delay: 3500, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      effect: 'coverflow',
+      coverflowEffect: { rotate: 16, depth: 160, stretch: 0, modifier: 1, slideShadows: false },
+      breakpoints: {
+        640:  { slidesPerView: 1.05 },
+        768:  { slidesPerView: 1.12 },
+        1024: { slidesPerView: 1.18 }
+      },
+      a11y: { enabled: true }
+    });
+  </script>
+</body>
+</html>
